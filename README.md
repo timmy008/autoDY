@@ -1,0 +1,5 @@
+# autoDY
+
+```
+yarn autoDY
+```
