@@ -17,15 +17,18 @@ function autoAdb() {
   var count = 0;
 
   rl.on("line", (line) => {
-    if (count > 0 && line.indexOf("device") != -1) {
-      var devicesId = line.replace("device", "").trim();
-      console.log(`当前正在唤醒的设备id：${devicesId}`);
-      try {
-        child_process.execSync(
-          `adb -s ${devicesId} shell  input swipe 540 1300 450 500 100`
-        );
-      } catch (error) {
-        console.error(`执行滑动指令失败....`);
+    if (count > 0) {
+      var lineArr = line.split("\t");
+      var devicesId = lineArr[0].trim();
+      if (devicesId.length > 0) {
+        console.log(`当前正在唤醒的设备id：${devicesId}`);
+        try {
+          child_process.execSync(
+            `adb -s ${devicesId} shell  input swipe 540 1300 450 500 100`
+          );
+        } catch (error) {
+          console.error(`执行滑动指令失败....`);
+        }
       }
     }
     count++;
