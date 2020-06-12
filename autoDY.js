@@ -25,7 +25,7 @@ function autoAdb() {
           `adb -s ${devicesId} shell  input swipe 540 1300 450 500 100`
         );
       } catch (error) {
-        console.log(`执行滑动指令失败....`);
+        console.error(`执行滑动指令失败....`);
       }
     }
     count++;
